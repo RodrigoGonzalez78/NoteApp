@@ -1,47 +1,28 @@
 package com.example.noteapp.di
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.example.noteapp.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
-/*
+
+
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
+    @Provides
     @Singleton
-    @Provides
-    fun provideRetrofit(gson: Gson) : Retrofit = Retrofit.Builder()
-        .baseUrl("https://rickandmortyapi.com/api/")
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .build()
+    fun provideRetrofit(): ApiService {
+        return Retrofit.Builder()
+            .baseUrl(ApiService.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create()
+    }
 
-    @Provides
-    fun provideGson(): Gson = GsonBuilder().create()
-
-    @Provides
-    fun provideCharacterService(retrofit: Retrofit): CharacterService = retrofit.create(CharacterService::class.java)
-
-    @Singleton
-    @Provides
-    fun provideCharacterRemoteDataSource(characterService: CharacterService) = CharacterRemoteDataSource(characterService)
-
-    @Singleton
-    @Provides
-    fun provideDatabase(@ApplicationContext appContext: Context) = AppDatabase.getDatabase(appContext)
-
-    @Singleton
-    @Provides
-    fun provideCharacterDao(db: AppDatabase) = db.characterDao()
-
-    @Singleton
-    @Provides
-    fun provideRepository(remoteDataSource: CharacterRemoteDataSource,
-                          localDataSource: CharacterDao) =
-        CharacterRepository(remoteDataSource, localDataSource)
 }
- */

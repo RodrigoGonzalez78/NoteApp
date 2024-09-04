@@ -1,8 +1,10 @@
 package com.example.noteapp.data.remote.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class TaskDto (
-    val title: String,
-    val description: String?,
-    val done: Boolean,
-    val userId: Long
+    @SerializedName("title") val title: String,
+    @SerializedName("description") val description: String?,
+    @SerializedName("done") val done: Boolean,
+    @SerializedName("userId") val userId: Long
 )
