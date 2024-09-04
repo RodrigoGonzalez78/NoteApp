@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
-
+//Maneja las dependecias
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
